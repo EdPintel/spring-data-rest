@@ -1,0 +1,44 @@
+###
+GET http://localhost:8081/countries
+Accept: application/json
+
+###
+GET http://localhost:8081/persons
+
+###
+GET http://localhost:8081/persons/4
+
+###
+PATCH http://localhost:8081/persons/4
+Content-Type: application/json
+
+{
+  "name": "Sopha Graham",
+  "country": "UK",
+  "isRegistered": "false"
+}
+
+###
+DELETE http://localhost:8081/persons/4
+
+###
+POST http://localhost:8081/persons
+Content-Type: application/json
+
+{
+  "name": "John Smith"
+}
+
+###
+GET http://localhost:8081/persons/4
+If-None-Match: "0b742b5c214535b2b49efdbe4a735d9d8"
+
+### not supported by ShallowEtagHeaderFilter
+GET http://localhost:8081/persons/4
+If-Match: "03a6c9f0aa136944e8cb98ade579082dc"
+
+# 1. Получить данные GET http://localhost:8081/persons/4
+# 2. Запросить данные с If-None-Match и etag
+# 3. Изменить данные
+# 4. Запросить данные с If-None-Match и etag снова
+
